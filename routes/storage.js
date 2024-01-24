@@ -3,12 +3,15 @@ import express from "express";
 
 import { NodeHttpHandler } from "@aws-sdk/node-http-handler";
 import { ProxyAgent } from "proxy-agent";
- 
+
+const REGION = "ap-northeast-1"; 
+
 const agent = new ProxyAgent();
 const client = new S3Client({
   requestHandler: new NodeHttpHandler({
     httpAgent: agent,
     httpsAgent: agent,
+    region: REGION,
   }),
 });
  
